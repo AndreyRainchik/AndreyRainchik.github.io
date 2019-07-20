@@ -22,7 +22,7 @@ social-email: andrey@rainchik.com # add your Email address
 discus-identifier: # add your discus identifier
 
 # Tracker
-analytics: # Google Analytics
+analytics: UA-143970568-2 # Google Analytics
 
 # Build Settings
 markdown: kramdown
