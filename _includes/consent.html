@@ -1,6 +1,6 @@
 <style>
     #notice {padding: 7px 15px; display: none; text-align: center; position: fixed; bottom: 0; width: 100%; background: #222; color: rgba(255,255,255,0.8);}
-    #notice a {cursor: pointer; margin-left: 10px; color: rgba(255,255,255,0.8);}
+    #notice a {cursor: pointer; margin-left: 10px; color: rgba(255,255,255,0.8); white-space: nowrap;}
     #notice a:visited {color: rgba(255,255,255,0.8);}
     @mixin gradient($color-top, $color-bot) {
       background-color: $color-bot;
@@ -20,6 +20,7 @@
       padding: 5px 10px;
       position: relative;
       white-space: nowrap;
+      padding-top: 2px;
     }
     a.btn:hover {
       @include gradient(#e5e5e5, #fff);
@@ -33,7 +34,8 @@
   src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
   integrity="sha256-pasqAKBDmFT4eHoN2ndd6lN370kFiGUFyTiUHWhU7k8="
   crossorigin="anonymous"></script>
-<div id="notice"><span>I would like to use third party cookies and scripts to improve the functionality of this website.</span><a id="cookie-notice-accept" class="btn btn-primary btn-sm">Approve</a><a href="https://www.iubenda.com/privacy-policy/71012530" class="btn btn-primary btn-sm">More info</a></div>
+<div id="notice"><span>I would like to use third party cookies and scripts to improve the functionality of this website.<a href="https://www.iubenda.com/privacy-p
+olicy/71012530" class="btn btn-primary btn-sm" style="top: 0px;">More info</a></span><a id="cookie-notice-accept" class="btn btn-primary btn-sm">Approve</a><a id="cookie-notice-close" class="btn btn-primary btn-sm">Decline</a></div>
 <script>
     function createCookie(name,value,days) {
         var expires = "";
@@ -64,15 +66,20 @@
         if($(window).width() < 769) {
           $("footer").css("padding-bottom", "0px")
         }
+    } else if(readCookie('cookie-notice-closed')=='true'){
+        ga('set', 'allowAdFeatures', false);
+        ga('set', 'anonymizeIp', true);
     } else {
         $('#notice').show();
         ga('set', 'allowAdFeatures', false);
         ga('set', 'anonymizeIp', true);
-        if($(window).width() >= 769) {
+        if($(window).width() > 865) {
           $("footer").css("padding-bottom", "15px")
+        } else if($(window).width() >= 769) {
+          $("footer").css("padding-bottom", "40px")
         }
         $(window).resize(function(){
-          if($(window).width() >= 843) {
+          if($(window).width() > 865) {
             $("footer").css("padding-bottom", "15px")
           } else if($(window).width() >= 769) {
             $("footer").css("padding-bottom", "40px")
@@ -85,6 +92,11 @@
     ga('send', 'pageview');
     $('#cookie-notice-accept').click(function() {
         createCookie('cookie-notice-dismissed','true',31);
+        $('#notice').hide();
+        location.reload();
+    });
+    $('#cookie-notice-close').click(function() {
+        createCookie('cookie-notice-closed','true',31);
         $('#notice').hide();
         location.reload();
     });
