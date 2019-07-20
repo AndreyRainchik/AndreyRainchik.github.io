@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Hello, World!"
-description: This is the first post in my new blog! # Add post description (optional)
+description: Tidbits about the blog and information about me. # Add post description (optional)
 img: hello.jpg # Add image post (optional)
 tags: [About]
 ---

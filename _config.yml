@@ -1,8 +1,6 @@
 title: Andrey's Blog
 description: > # this means to ignore newlines until "baseurl:"
-  This is Andrey Rainchik's blog. It mostly contains infosec-related posts,
-  such as writeups for capture-the-flag competitions or, hopefully, any
-  vulnerabilities I discover or exploits I develop.
+  An information security-related blog where I post about capture-the-flag exercises, exploits, and vulnerabilities.
 permalink: ':title/'
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
