@@ -1100,6 +1100,12 @@ footer .copyright {
   margin: 0;
 }
 
+footer .privacy {
+  font-size: 10px;
+  text-align: center;
+  margin: 0;
+}
+
 .post {
   width: 100%;
   max-width: 100%;
