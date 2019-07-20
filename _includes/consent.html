@@ -1,6 +1,7 @@
 <style>
     #notice {padding: 7px 15px; display: none; text-align: center; position: fixed; bottom: 0; width: 100%; background: #222; color: rgba(255,255,255,0.8);}
     #notice a {cursor: pointer; margin-left: 10px;}
+    #notice a:visited {color: rgba(255,255,255,0.8);}
     @mixin gradient($color-top, $color-bot) {
       background-color: $color-bot;
       background: -webkit-gradient(linear, left top, left bottom, from($color-top), to($color-bot));
@@ -23,7 +24,7 @@
     a.btn:hover {
       @include gradient(#e5e5e5, #fff);
     }
-    @media (max-width: 767px) {
+    @media (max-width: 768px) {
         #notice span {display: block; padding-top: 3px; margin-bottom: 13px;}
         #notice a {position: relative; bottom: 4px;}
     }
@@ -60,10 +61,25 @@
     if(readCookie('cookie-notice-dismissed')=='true') {
         ga('set', 'allowAdFeatures', true);
         ga('set', 'anonymizeIp', false);
+        if($(window).width() < 769) {
+          $("footer").css("padding-bottom", "0px")
+        }
     } else {
         $('#notice').show();
         ga('set', 'allowAdFeatures', false);
         ga('set', 'anonymizeIp', true);
+        if($(window).width() >= 769) {
+          $("footer").css("padding-bottom", "15px")
+        }
+        $(window).resize(function(){
+          if($(window).width() >= 843) {
+            $("footer").css("padding-bottom", "15px")
+          } else if($(window).width() >= 769) {
+            $("footer").css("padding-bottom", "40px")
+          } else {
+            $("footer").css("padding-bottom", "0px")
+          }
+        })
     }
     ga('create', 'UA-143970568-2', 'auto');
     ga('send', 'pageview');
