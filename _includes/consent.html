@@ -56,15 +56,13 @@ olicy/71012530" class="btn btn-primary btn-sm" style="top: 0px;">More info</a></
         }
         return null;
     }
-    function eraseCookie(name) {
-        createCookie(name,"",-1);
-    }
     {% include analytics.js %}
-    if(readCookie('cookie-notice-dismissed')=='true') {
+    var c = readCookie('cookie-notice-dismissed')
+    if(c == 'true') {
         ga('create', 'UA-143970568-2', 'auto');
         ga('send', 'pageview');
         $("footer").css("padding-bottom", "0px")
-    } else if(readCookie('cookie-notice-closed')=='true'){
+    } else if(c == 'false'){
         ga('create', 'UA-143970568-2', {'storage': 'none','anonymizeIp': true,'storeGac': false});
         ga('set', 'allowAdFeatures', false);
         ga('send', 'pageview');
@@ -94,7 +92,7 @@ olicy/71012530" class="btn btn-primary btn-sm" style="top: 0px;">More info</a></
         location.reload();
     });
     $('#cookie-notice-close').click(function() {
-        createCookie('cookie-notice-closed','true',31);
+        createCookie('cookie-notice-dismissed','false',31);
         $('#notice').hide();
         location.reload();
     });
