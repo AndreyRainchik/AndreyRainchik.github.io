@@ -63,9 +63,7 @@ olicy/71012530" class="btn btn-primary btn-sm" style="top: 0px;">More info</a></
     if(readCookie('cookie-notice-dismissed')=='true') {
         ga('create', 'UA-143970568-2', 'auto');
         ga('send', 'pageview');
-        if($(window).width() < 769) {
-          $("footer").css("padding-bottom", "0px")
-        }
+        $("footer").css("padding-bottom", "0px")
     } else if(readCookie('cookie-notice-closed')=='true'){
         ga('create', 'UA-143970568-2', {'storage': 'none','anonymizeIp': true,'storeGac': false});
         ga('set', 'allowAdFeatures', false);
@@ -75,13 +73,13 @@ olicy/71012530" class="btn btn-primary btn-sm" style="top: 0px;">More info</a></
         ga('create', 'UA-143970568-2', {'storage': 'none','anonymizeIp': true,'storeGac': false});
         ga('set', 'allowAdFeatures', false);
         ga('send', 'pageview');
-        if($(window).width() > 865) {
+        if($(window).width() > 905) {
           $("footer").css("padding-bottom", "15px")
         } else if($(window).width() >= 769) {
           $("footer").css("padding-bottom", "40px")
         }
         $(window).resize(function(){
-          if($(window).width() > 865) {
+          if($(window).width() > 905) {
             $("footer").css("padding-bottom", "15px")
           } else if($(window).width() >= 769) {
             $("footer").css("padding-bottom", "40px")
