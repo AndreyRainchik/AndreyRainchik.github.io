@@ -56,30 +56,28 @@ olicy/71012530" class="btn btn-primary btn-sm" style="top: 0px;">More info</a></
         }
         return null;
     }
-    function eraseCookie(name) {
-        createCookie(name,"",-1);
-    }
     {% include analytics.js %}
-    if(readCookie('cookie-notice-dismissed')=='true') {
-        ga('set', 'allowAdFeatures', true);
-        ga('set', 'anonymizeIp', false);
-        if($(window).width() < 769) {
-          $("footer").css("padding-bottom", "0px")
-        }
-    } else if(readCookie('cookie-notice-closed')=='true'){
+    var c = readCookie('cookie-notice-dismissed')
+    if(c == 'true') {
+        ga('create', 'UA-143970568-2', 'auto');
+        ga('send', 'pageview');
+        $("footer").css("padding-bottom", "0px")
+    } else if(c == 'false'){
+        ga('create', 'UA-143970568-2', {'storage': 'none','anonymizeIp': true,'storeGac': false});
         ga('set', 'allowAdFeatures', false);
-        ga('set', 'anonymizeIp', true);
+        ga('send', 'pageview');
     } else {
         $('#notice').show();
+        ga('create', 'UA-143970568-2', {'storage': 'none','anonymizeIp': true,'storeGac': false});
         ga('set', 'allowAdFeatures', false);
-        ga('set', 'anonymizeIp', true);
-        if($(window).width() > 865) {
+        ga('send', 'pageview');
+        if($(window).width() > 906) {
           $("footer").css("padding-bottom", "15px")
         } else if($(window).width() >= 769) {
           $("footer").css("padding-bottom", "40px")
         }
         $(window).resize(function(){
-          if($(window).width() > 865) {
+          if($(window).width() > 906) {
             $("footer").css("padding-bottom", "15px")
           } else if($(window).width() >= 769) {
             $("footer").css("padding-bottom", "40px")
@@ -88,15 +86,13 @@ olicy/71012530" class="btn btn-primary btn-sm" style="top: 0px;">More info</a></
           }
         })
     }
-    ga('create', 'UA-143970568-2', 'auto');
-    ga('send', 'pageview');
     $('#cookie-notice-accept').click(function() {
-        createCookie('cookie-notice-dismissed','true',31);
+        createCookie('cookie-notice-dismissed','true',90);
         $('#notice').hide();
         location.reload();
     });
     $('#cookie-notice-close').click(function() {
-        createCookie('cookie-notice-closed','true',31);
+        createCookie('cookie-notice-dismissed','false',31);
         $('#notice').hide();
         location.reload();
     });
